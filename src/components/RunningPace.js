@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class PaceTime extends Component {
+class RunningPace extends Component {
   createMinOptions = () => {
     let minOptions = [];
     for (let i = 0; i < 31; i++) {
@@ -22,7 +22,7 @@ class PaceTime extends Component {
   render() {
     return (
       <fieldset>
-        <label>Pace time:</label>
+        <label>Running Pace:</label>
 
         <select className="min">
           {this.createMinOptions()}
@@ -36,4 +36,4 @@ class PaceTime extends Component {
   }
 }
 
-export default PaceTime;
+export default RunningPace;

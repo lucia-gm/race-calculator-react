@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Distance from './Distance.js';
-import PaceTime from './PaceTime.js';
+import RunningPace from './RunningPace.js';
 import RunningTime from './RunningTime.js';
 import '../css/App.css';
 
@@ -13,7 +13,7 @@ class App extends Component {
         </header>
         <form>
           <Distance/>
-          <PaceTime/>
+          <RunningPace/>
           <RunningTime/>
         </form>
       </div>
