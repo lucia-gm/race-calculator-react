@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 
-class PaceTime extends Component {
+class RunningTime extends Component {
+  createHourOptions = () => {
+    let hourOptions = [];
+  
+    for (let i = 0; i < 11; i++) {
+      hourOptions.push(<option key={i} value={i*3600}>{`${i} h`}</option>);
+    }
+    return hourOptions;
+  }
+
   createMinOptions = () => {
     let minOptions = [];
-    for (let i = 0; i < 31; i++) {
+    for (let i = 0; i < 60; i++) {
       minOptions.push(<option key={i} value={i*60}>{`${i} min`}</option>);
     }
 
@@ -22,13 +31,16 @@ class PaceTime extends Component {
   render() {
     return (
       <fieldset>
-        <label>Pace time:</label>
+        <label>Running Time:</label>
+        <select class="hour">
+          {this.createHourOptions()}
+        </select>
 
-        <select className="min">
+        <select class="min">
           {this.createMinOptions()}
         </select>
 
-        <select className="sec">
+        <select class="sec">
           {this.createSecOptions()}
         </select>
       </fieldset>
@@ -36,4 +48,4 @@ class PaceTime extends Component {
   }
 }
 
-export default PaceTime;
+export default RunningTime;
