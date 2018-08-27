@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Distance from './Distance.js';
+import PaceTime from './PaceTime.js';
 import '../css/App.css';
 
 class App extends Component {
@@ -11,6 +12,7 @@ class App extends Component {
         </header>
         <form>
           <Distance/>
+          <PaceTime/>
         </form>
       </div>
     );
