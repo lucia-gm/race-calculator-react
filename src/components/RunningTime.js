@@ -32,15 +32,15 @@ class RunningTime extends Component {
     return (
       <fieldset>
         <label>Running Time:</label>
-        <select class="hour">
+        <select className="hour">
           {this.createHourOptions()}
         </select>
 
-        <select class="min">
+        <select className="min">
           {this.createMinOptions()}
         </select>
 
-        <select class="sec">
+        <select className="sec">
           {this.createSecOptions()}
         </select>
       </fieldset>

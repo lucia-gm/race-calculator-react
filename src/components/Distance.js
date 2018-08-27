@@ -9,7 +9,7 @@ class Distance extends Component {
   }
 
   handleDistanceChange = (event) => {
-    this.setState({selectedOption: event.target.value})
+    this.setState({selectedOption: event.target.value});
   }
 
   render() {
