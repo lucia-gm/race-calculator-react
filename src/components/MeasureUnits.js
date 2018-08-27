@@ -14,6 +14,7 @@ class MeasureUnits extends Component {
 
   render() {
     const {selectedOption} = this.state;
+    
     return (
       <fieldset>
         <div>

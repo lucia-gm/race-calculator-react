@@ -3,10 +3,24 @@ import Distance from './Distance.js';
 import RunningPace from './RunningPace.js';
 import RunningTime from './RunningTime.js';
 import MeasureUnits from './MeasureUnits.js';
+import TimeSelector from './TimeSelector.js';
 import '../css/App.css';
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      timeSelectorOption: 'runningPace'
+    }
+  }
+
+  handleTimeSelectorChange = (event) => {
+    this.setState({timeSelectorOption: event.target.value});
+  }
+
   render() {
+    const {timeSelectorOption} = this.state;
+
     return (
       <div className="App">
         <header className="App-header">
@@ -15,8 +29,8 @@ class App extends Component {
 
         <form>
           <Distance/>
-          <RunningPace/>
-          <RunningTime/>
+          <TimeSelector timeSelectorOption={timeSelectorOption} onTimeSelectorChange={this.handleTimeSelectorChange}/>
+          {timeSelectorOption === 'runningPace' ? <RunningPace/> : <RunningTime/>}
           <MeasureUnits/>
 
           <div>

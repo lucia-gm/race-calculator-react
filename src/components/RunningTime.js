@@ -31,7 +31,6 @@ class RunningTime extends Component {
   render() {
     return (
       <fieldset>
-        <label>Running Time:</label>
         <select className="hour">
           {this.createHourOptions()}
         </select>

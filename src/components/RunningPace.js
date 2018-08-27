@@ -22,8 +22,6 @@ class RunningPace extends Component {
   render() {
     return (
       <fieldset>
-        <label>Running Pace:</label>
-
         <select className="min">
           {this.createMinOptions()}
         </select>
