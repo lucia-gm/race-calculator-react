@@ -1,52 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Distance extends Component {
-  constructor(props) {
-    super(props) 
-    this.state = {
-      selectedOption: '26.219'
-    }
-  }
-
-  handleDistanceChange = (event) => {
-    this.setState({selectedOption: event.target.value});
-  }
-
-  render() {
-    const {selectedOption} = this.state;
-
-    return (
-      <fieldset>
-        <legend>Distance</legend>
-        <div>
-          <label>
-            <input type="radio" id="marathon" value="26.219" checked={selectedOption === '26.219'} onChange={this.handleDistanceChange}/>
-            Marathon
-          </label>
-        </div>
-        <div>
-          <label>
-            <input type="radio" id="half-marathon" value="13.1094" checked={selectedOption === '13.1094'} onChange={this.handleDistanceChange}/>
-            Half-Marathon</label>
-        </div>
-        <div>
-          <label>
-            <input type="radio" id="15K" value="9.3206" checked={selectedOption === '9.3206'} onChange={this.handleDistanceChange}/>
-            15K</label>
-        </div>
-        <div>
-          <label>
-            <input type="radio" id="10K" value="6.2137" checked={selectedOption === '6.2137'} onChange={this.handleDistanceChange}/>
-            10K</label>
-        </div>
-        <div>
-          <label>
-            <input type="radio" id="5K" value="3.1069" checked={selectedOption === '3.1069'} onChange={this.handleDistanceChange}/>
-            5K</label>
-        </div>
-      </fieldset>
-    );
-  }
-}
+const Distance = (props) => (
+  <fieldset>
+    <legend>Distance</legend>
+    <select onChange={props.onDistanceChange}>
+      <option id="marathon" value="26.219">Marathon</option>
+      <option id="half-marathon" value="13.1094">Half-Marathon</option>
+      <option id="15K" value="9.3206">15K</option>
+      <option id="10K" value="6.2137">10K</option>
+      <option id="5K" value="3.1069">5K</option>
+    </select>
+  </fieldset>
+);
 
 export default Distance;

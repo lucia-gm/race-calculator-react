@@ -10,12 +10,17 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      timeSelectorOption: 'runningPace'
+      timeSelectorOption: 'runningPace',
+      distanceSelected: '26.219'
     }
   }
 
   handleTimeSelectorChange = (event) => {
     this.setState({timeSelectorOption: event.target.value});
+  }
+
+  handleDistanceChange = (event) => {
+    this.setState({distanceSelected: event.target.value});
   }
 
   render() {
@@ -28,7 +33,7 @@ class App extends Component {
         </header>
 
         <form>
-          <Distance/>
+          <Distance onDistanceChange={this.handleDistanceChange}/>
           <TimeSelector timeSelectorOption={timeSelectorOption} onTimeSelectorChange={this.handleTimeSelectorChange}/>
           {timeSelectorOption === 'runningPace' ? <RunningPace/> : <RunningTime/>}
           <MeasureUnits/>
