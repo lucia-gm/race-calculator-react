@@ -43,10 +43,7 @@ class App extends Component {
           {timeSelectorOption === 'runningPace' ? <RunningPace/> : <RunningTime/>}
           <MeasureUnits measureUnitsSelected={measureUnitsSelected} onMeasureUnitsChange={this.handleMeasureUnitsChange}/>
 
-          <div>
-            <button type="button" id="calculate-button">Calculate</button>
-            <button type="reset" id="reset-button">Reset</button>
-          </div>
+          <button type="button" id="calculate-button">Calculate</button>
         </form>
       </div>
     );
