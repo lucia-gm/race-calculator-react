@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 
 class RunningPace extends Component {
+  constructor(props) {
+    super() 
+    this.state = {
+      min: 0,
+      sec: 0,
+    }
+  }
   createMinOptions = () => {
     let minOptions = [];
     for (let i = 0; i < 31; i++) {
@@ -19,14 +26,29 @@ class RunningPace extends Component {
     return secOptions;
   }
 
+  handleTimeChange = (event) => {
+    let newValue = Number(event.target.value);
+    let time;
+
+    if (event.target.className ==='min') {
+      time= newValue + this.state.sec;
+      this.setState({min: newValue});
+    } else {
+      time= newValue + this.state.min;
+      this.setState({sec: newValue});
+    }
+    
+    this.props.onPaceChange(time);
+  }
+
   render() {
     return (
       <fieldset>
-        <select className="min">
+        <select className="min" onChange={this.handleTimeChange}>
           {this.createMinOptions()}
         </select>
 
-        <select className="sec">
+        <select className="sec" onChange={this.handleTimeChange}>
           {this.createSecOptions()}
         </select>
       </fieldset>
