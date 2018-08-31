@@ -4,6 +4,7 @@ import RunningPace from './RunningPace.js';
 import RunningTime from './RunningTime.js';
 import MeasureUnits from './MeasureUnits.js';
 import TimeSelector from './TimeSelector.js';
+import * as Calculator from '../Calculator.js';
 import '../css/App.css';
 
 class App extends Component {
@@ -11,7 +12,7 @@ class App extends Component {
     super()
     this.state = {
       timeSelectorOption: 'runningPace',
-      distanceSelected: '26.219',
+      distanceSelected: '26.219', //in miles
       measureUnitsSelected: 'miles',
       runningPace: 0,
       runningTime: 0
@@ -38,6 +39,15 @@ class App extends Component {
     this.setState({runningTime: time});
   }
 
+  handleCalculateClick = () => {
+    const {distanceSelected, measureUnitsSelected, timeSelectorOption, runningPace} = this.state;
+    let distance = (measureUnitsSelected === 'miles') ? distanceSelected : Calculator.milesToKm(distanceSelected);
+    if (timeSelectorOption === 'runningPace') {
+      let time = Calculator.getRunningTime(distance, runningPace);
+      this.setState({runningTime: time});
+    }
+  }
+
   render() {
     const {timeSelectorOption, measureUnitsSelected} = this.state;
     console.log(this.state)
@@ -54,7 +64,7 @@ class App extends Component {
           {timeSelectorOption === 'runningPace' ? <RunningPace onRunningPaceChange={this.handleRunningPaceChange}/> : <RunningTime onRunningTimeChange={this.handleRunningTimeChange}/>}
           <MeasureUnits measureUnitsSelected={measureUnitsSelected} onMeasureUnitsChange={this.handleMeasureUnitsChange}/>
 
-          <button type="button" id="calculate-button">Calculate</button>
+          <button type="button" id="calculate-button" onClick={this.handleCalculateClick}>Calculate</button>
         </form>
       </div>
     );
