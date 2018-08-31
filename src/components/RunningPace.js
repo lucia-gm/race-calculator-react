@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 
 class RunningPace extends Component {
-  constructor(props) {
+  constructor() {
     super() 
     this.state = {
       min: 0,
-      sec: 0,
+      sec: 0
     }
   }
+
   createMinOptions = () => {
     let minOptions = [];
     for (let i = 0; i < 31; i++) {
@@ -38,7 +39,7 @@ class RunningPace extends Component {
       this.setState({sec: newValue});
     }
     
-    this.props.onPaceChange(time);
+    this.props.onRunningPaceChange(time);
   }
 
   render() {

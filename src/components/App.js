@@ -13,7 +13,8 @@ class App extends Component {
       timeSelectorOption: 'runningPace',
       distanceSelected: '26.219',
       measureUnitsSelected: 'miles',
-      runningPace: 0
+      runningPace: 0,
+      runningTime: 0
     }
   }
 
@@ -29,8 +30,12 @@ class App extends Component {
     this.setState({measureUnitsSelected: event.target.value});
   }
 
-  handlePaceChange = (time) => {
+  handleRunningPaceChange = (time) => {
     this.setState({runningPace: time});
+  }
+
+  handleRunningTimeChange = (time) => {
+    this.setState({runningTime: time});
   }
 
   render() {
@@ -46,7 +51,7 @@ class App extends Component {
         <form>
           <Distance onDistanceChange={this.handleDistanceChange}/>
           <TimeSelector timeSelectorOption={timeSelectorOption} onTimeSelectorChange={this.handleTimeSelectorChange}/>
-          {timeSelectorOption === 'runningPace' ? <RunningPace onPaceChange={this.handlePaceChange}/> : <RunningTime/>}
+          {timeSelectorOption === 'runningPace' ? <RunningPace onRunningPaceChange={this.handleRunningPaceChange}/> : <RunningTime onRunningTimeChange={this.handleRunningTimeChange}/>}
           <MeasureUnits measureUnitsSelected={measureUnitsSelected} onMeasureUnitsChange={this.handleMeasureUnitsChange}/>
 
           <button type="button" id="calculate-button">Calculate</button>
