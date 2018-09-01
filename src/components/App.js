@@ -3,7 +3,7 @@ import Distance from './Distance.js';
 import RunningPace from './RunningPace.js';
 import RunningTime from './RunningTime.js';
 import MeasureUnits from './MeasureUnits.js';
-import TimeSelector from './TimeSelector.js';
+import TimeFormat from './TimeFormat.js';
 import * as Calculator from '../Calculator.js';
 import '../css/App.css';
 
@@ -11,7 +11,7 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      timeSelectorOption: 'runningPace',
+      timeFormatProvided: 'runningPace',
       distanceSelected: '26.219', //in miles
       measureUnitsSelected: 'miles',
       runningPace: 0,
@@ -23,8 +23,8 @@ class App extends Component {
     this.setState({distanceSelected: event.target.value});
   }
 
-  handleTimeSelectorChange = (event) => {
-    this.setState({timeSelectorOption: event.target.value});
+  handleTimeFormatChange = (event) => {
+    this.setState({timeFormatProvided: event.target.value});
   }
 
   handleMeasureUnitsChange = (event) => {
@@ -40,9 +40,9 @@ class App extends Component {
   }
 
   handleCalculateClick = () => {
-    const {distanceSelected, measureUnitsSelected, timeSelectorOption, runningPace, runningTime} = this.state;
+    const {distanceSelected, measureUnitsSelected, timeFormatProvided, runningPace, runningTime} = this.state;
     let distance = (measureUnitsSelected === 'miles') ? distanceSelected : Calculator.milesToKm(distanceSelected);
-    if (timeSelectorOption === 'runningPace') {
+    if (timeFormatProvided === 'runningPace') {
       let time = Calculator.getRunningTime(distance, runningPace);
       this.setState({runningTime: time});
     } else {
@@ -52,7 +52,7 @@ class App extends Component {
   }
 
   render() {
-    const {timeSelectorOption, measureUnitsSelected} = this.state;
+    const {timeFormatProvided, measureUnitsSelected} = this.state;
     console.log(this.state)
 
     return (
@@ -63,8 +63,8 @@ class App extends Component {
 
         <form>
           <Distance onDistanceChange={this.handleDistanceChange}/>
-          <TimeSelector timeSelectorOption={timeSelectorOption} onTimeSelectorChange={this.handleTimeSelectorChange}/>
-          {timeSelectorOption === 'runningPace' ? <RunningPace onRunningPaceChange={this.handleRunningPaceChange}/> : <RunningTime onRunningTimeChange={this.handleRunningTimeChange}/>}
+          <TimeFormat timeFormatProvided={timeFormatProvided} onTimeFormatChange={this.handleTimeFormatChange}/>
+          {timeFormatProvided === 'runningPace' ? <RunningPace onRunningPaceChange={this.handleRunningPaceChange}/> : <RunningTime onRunningTimeChange={this.handleRunningTimeChange}/>}
           <MeasureUnits measureUnitsSelected={measureUnitsSelected} onMeasureUnitsChange={this.handleMeasureUnitsChange}/>
 
           <button type="button" id="calculate-button" onClick={this.handleCalculateClick}>Calculate</button>
