@@ -40,11 +40,14 @@ class App extends Component {
   }
 
   handleCalculateClick = () => {
-    const {distanceSelected, measureUnitsSelected, timeSelectorOption, runningPace} = this.state;
+    const {distanceSelected, measureUnitsSelected, timeSelectorOption, runningPace, runningTime} = this.state;
     let distance = (measureUnitsSelected === 'miles') ? distanceSelected : Calculator.milesToKm(distanceSelected);
     if (timeSelectorOption === 'runningPace') {
       let time = Calculator.getRunningTime(distance, runningPace);
       this.setState({runningTime: time});
+    } else {
+      let time = Calculator.getRunningPace(distance, runningTime);
+      this.setState({runningPace: time});
     }
   }
 

@@ -5,3 +5,7 @@ export const milesToKm = (miles) => {
 export const getRunningTime = (distance, runningPace) => {
   return distance * runningPace;
 }
+
+export const getRunningPace = (distance, runningTime) => {
+  return runningTime/distance;
+}
