@@ -74,17 +74,18 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Race Calculator</h1>
         </header>
+        <main className="App-body">
+          <form>
+            <Distance onDistanceChange={this.handleDistanceChange}/>
+            <TimeFormat timeFormatProvided={timeFormatProvided} onTimeFormatChange={this.handleTimeFormatChange}/>
+            {timeFormatProvided === 'runningPace' ? <RunningPace onRunningPaceChange={this.handleRunningPaceChange}/> : <RunningTime onRunningTimeChange={this.handleRunningTimeChange}/>}
+            <MeasureUnits measureUnitsSelected={measureUnitsSelected} onMeasureUnitsChange={this.handleMeasureUnitsChange}/>
 
-        <form>
-          <Distance onDistanceChange={this.handleDistanceChange}/>
-          <TimeFormat timeFormatProvided={timeFormatProvided} onTimeFormatChange={this.handleTimeFormatChange}/>
-          {timeFormatProvided === 'runningPace' ? <RunningPace onRunningPaceChange={this.handleRunningPaceChange}/> : <RunningTime onRunningTimeChange={this.handleRunningTimeChange}/>}
-          <MeasureUnits measureUnitsSelected={measureUnitsSelected} onMeasureUnitsChange={this.handleMeasureUnitsChange}/>
+            <button type="button" id="calculate-button" onClick={this.handleCalculateClick}>Calculate</button>
+          </form>
 
-          <button type="button" id="calculate-button" onClick={this.handleCalculateClick}>Calculate</button>
-        </form>
-
-        {displayTable && (<Table data={this.state}/>)}
+          {displayTable && (<Table data={this.state}/>)}
+        </main>
       </div>
     );
   }

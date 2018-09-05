@@ -19,3 +19,17 @@ fieldset {
   border: 0;
   padding-left: 0;
 }
+
+.App {
+  padding: 3rem 10rem;
+}
+
+.App-body {
+  max-width: 96rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+#calculate-button {
+  cursor: pointer;
+}
