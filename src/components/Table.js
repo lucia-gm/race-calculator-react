@@ -11,9 +11,9 @@ class Table extends Component {
     for (let i = 1; i < this.props.data.distance; i++) {
       tablebody.push(<tr key={i}>
                         <th>{i}</th>
-                        <td>{pace5Slower}</td>
-                        <td>{paceTime}</td>
-                        <td>{pace5Faster}</td>
+                        <td>{Calculator.secondsToHms(pace5Slower)}</td>
+                        <td>{Calculator.secondsToHms(paceTime)}</td>
+                        <td>{Calculator.secondsToHms(pace5Faster)}</td>
                       </tr>);
       paceTime += pace;
       pace5Faster += paceFaster;
@@ -36,9 +36,9 @@ class Table extends Component {
         <thead>
           <tr>
             <th>Distance ({unit})</th>
-            <th>{paceSlower}/{unit}</th>
-            <th>{pace}/{unit}</th>
-            <th>{paceFaster}/{unit}</th>
+            <th>{Calculator.secondsToHms(paceSlower)}/{unit}</th>
+            <th>{Calculator.secondsToHms(pace)}/{unit}</th>
+            <th>{Calculator.secondsToHms(paceFaster)}/{unit}</th>
           </tr>
         </thead>
 
@@ -47,9 +47,9 @@ class Table extends Component {
 
           <tr key="last">
             <th>{distance}</th>
-            <td>{Calculator.getRunningTime(paceSlower, distance)}</td>
-            <td>{Calculator.getRunningTime(pace, distance)}</td>
-            <td>{Calculator.getRunningTime(paceFaster, distance)}</td>
+            <td>{Calculator.secondsToHms(Calculator.getRunningTime(paceSlower, distance))}</td>
+            <td>{Calculator.secondsToHms(Calculator.getRunningTime(pace, distance))}</td>
+            <td>{Calculator.secondsToHms(Calculator.getRunningTime(paceFaster, distance))}</td>
           </tr>
         </tbody>
       </table>

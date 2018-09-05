@@ -15,3 +15,17 @@ export const getDistance = (measureUnit, distanceInMiles) => {
   
   return distance;
 }
+
+// Function inspired by https://stackoverflow.com/questions/37096367/how-to-convert-seconds-to-minutes-and-hours-in-javascript/37096512
+export const secondsToHms = (d) => {
+  d = Number(d);
+  let h = Math.floor(d / 3600);
+  let m = Math.floor(d % 3600 / 60);
+  let s = Math.floor(d % 3600 % 60);
+
+  let hDisplay = h == 0 ? '' : (h < 10 ? `0${h}:` : `${h}:`);
+  let mDisplay = m < 10 ? `0${m}:` : `${m}:`;
+  let sDisplay = s < 10 ? `0${s}` : `${s}`;  
+
+  return hDisplay + mDisplay + sDisplay;
+}
