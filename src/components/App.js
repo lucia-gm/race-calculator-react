@@ -66,7 +66,7 @@ class App extends Component {
   }
 
   render() {
-    const {timeFormatProvided, measureUnitsSelected, displayTable} = this.state;
+    const {timeFormatProvided, measureUnitsSelected, displayTable, runningPace} = this.state;
     console.log(this.state)
 
     return (
@@ -84,7 +84,7 @@ class App extends Component {
             <button type="button" id="calculate-button" onClick={this.handleCalculateClick}>Calculate</button>
           </form>
 
-          {displayTable && (<Table data={this.state}/>)}
+          {(displayTable && runningPace >= 60)  && (<Table data={this.state}/>)}
         </main>
       </div>
     );
