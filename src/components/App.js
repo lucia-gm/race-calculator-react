@@ -4,6 +4,7 @@ import RunningPace from './RunningPace.js';
 import RunningTime from './RunningTime.js';
 import MeasureUnits from './MeasureUnits.js';
 import TimeFormat from './TimeFormat.js';
+import Table from './Table.js';
 import * as Calculator from '../Calculator.js';
 import '../css/App.css';
 
@@ -13,14 +14,20 @@ class App extends Component {
     this.state = {
       timeFormatProvided: 'runningPace',
       distanceSelected: '26.219', //in miles
-      measureUnitsSelected: 'miles',
+      measureUnitsSelected: 'mi',
       runningPace: 0,
-      runningTime: 0
+      runningTime: 0,
+      distance: 26.219,
+      displayTable: false,
     }
   }
 
   handleDistanceChange = (event) => {
-    this.setState({distanceSelected: event.target.value});
+    let distanceInMiles = event.target.value,
+        distance = Calculator.getDistance(this.state.measureUnitsSelected, distanceInMiles);
+    this.setState({distanceSelected: distanceInMiles,
+                   distance: distance
+                  });
   }
 
   handleTimeFormatChange = (event) => {
@@ -28,7 +35,12 @@ class App extends Component {
   }
 
   handleMeasureUnitsChange = (event) => {
-    this.setState({measureUnitsSelected: event.target.value});
+    let measureUnits = event.target.value,
+        distance = Calculator.getDistance(measureUnits, this.state.distanceSelected);
+
+    this.setState({measureUnitsSelected: measureUnits,  
+                   distance: distance
+                  });
   }
 
   handleRunningPaceChange = (time) => {
@@ -40,8 +52,8 @@ class App extends Component {
   }
 
   handleCalculateClick = () => {
-    const {distanceSelected, measureUnitsSelected, timeFormatProvided, runningPace, runningTime} = this.state;
-    let distance = (measureUnitsSelected === 'miles') ? distanceSelected : Calculator.milesToKm(distanceSelected);
+    const {distance, timeFormatProvided, runningPace, runningTime} = this.state;
+    
     if (timeFormatProvided === 'runningPace') {
       let time = Calculator.getRunningTime(distance, runningPace);
       this.setState({runningTime: time});
@@ -49,10 +61,12 @@ class App extends Component {
       let time = Calculator.getRunningPace(distance, runningTime);
       this.setState({runningPace: time});
     }
+
+    this.setState({displayTable: true})
   }
 
   render() {
-    const {timeFormatProvided, measureUnitsSelected} = this.state;
+    const {timeFormatProvided, measureUnitsSelected, displayTable} = this.state;
     console.log(this.state)
 
     return (
@@ -69,6 +83,8 @@ class App extends Component {
 
           <button type="button" id="calculate-button" onClick={this.handleCalculateClick}>Calculate</button>
         </form>
+
+        {displayTable && (<Table data={this.state}/>)}
       </div>
     );
   }

@@ -4,7 +4,7 @@ const MeasureUnits = (props) => (
   <fieldset>
     <div>
       <label>
-        <input type="radio" value="miles" checked={props.measureUnitsSelected === 'miles'} onChange={props.onMeasureUnitsChange}/>
+        <input type="radio" value="mi" checked={props.measureUnitsSelected === 'mi'} onChange={props.onMeasureUnitsChange}/>
         min/mi
       </label>
     </div>
