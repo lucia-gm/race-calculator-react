@@ -20,8 +20,10 @@ fieldset {
   padding-left: 0;
 }
 
+/* App styles */
 .App {
   padding: 3rem 10rem;
+  color: #432966;
 }
 
 .App-body {
@@ -32,4 +34,35 @@ fieldset {
 
 #calculate-button {
   cursor: pointer;
+}
+
+/* Table styles */
+table {
+  text-align: right;
+  border-spacing: 0;
+}
+
+.table-heading {
+  background: #b3ffff;
+}
+
+.highlighted-row {
+  background: #e6ffff;
+}
+
+.highlighted-row :first-child,
+.highlighted-row :nth-child(3) {
+  font-weight: 800;
+}
+
+.highlighted-col {
+  background: #ccffff;
+}
+
+td {
+  border-bottom: 1px solid #e6ffff;
+}
+
+th, td {
+  padding: 0.2rem 1.7rem;
 }

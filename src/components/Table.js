@@ -10,10 +10,10 @@ class Table extends Component {
     
     for (let i = 1; i <= lastRow; i++) {
       let rowInfo = (unit === 'mi') ? this.getMiValues(i) : this.getKmValues(i); 
-      tableBody.push(<tr key={i}>
-                      <th>{rowInfo.name}</th>
+      tableBody.push(<tr key={i} className={(typeof(rowInfo.name)=== 'string') ? 'highlighted-row' : ''}>
+                      <td>{rowInfo.name}</td>
                       <td>{Calculator.secondsToHms(rowInfo.value * pace5Slower)}</td>
-                      <td>{Calculator.secondsToHms(rowInfo.value * paceTime)}</td>
+                      <td className='highlighted-col'>{Calculator.secondsToHms(rowInfo.value * paceTime)}</td>
                       <td>{Calculator.secondsToHms(rowInfo.value * pace5Faster)}</td>
                      </tr>);
     }
@@ -153,7 +153,7 @@ class Table extends Component {
     return (
       <table> 
         <thead>
-          <tr>
+          <tr className="table-heading">
             <th>Distance ({unit})</th>
             <th>{Calculator.secondsToHms(paceSlower)}/{unit}</th>
             <th>{Calculator.secondsToHms(pace)}/{unit}</th>
