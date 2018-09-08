@@ -4,7 +4,7 @@ class RunningPace extends Component {
   constructor() {
     super() 
     this.state = {
-      min: 0,
+      min: 420,
       sec: 0
     }
   }
@@ -45,11 +45,11 @@ class RunningPace extends Component {
   render() {
     return (
       <fieldset>
-        <select className="min" onChange={this.handleTimeChange}>
+        <select className="min" onChange={this.handleTimeChange} defaultValue={this.state.min}>
           {this.createMinOptions()}
         </select>
 
-        <select className="sec" onChange={this.handleTimeChange}>
+        <select className="sec" onChange={this.handleTimeChange} defaultValue={this.state.sec}>
           {this.createSecOptions()}
         </select>
       </fieldset>

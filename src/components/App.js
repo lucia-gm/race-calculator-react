@@ -15,10 +15,9 @@ class App extends Component {
       timeFormatProvided: 'runningPace',
       distanceSelected: '26.219', //in miles
       measureUnitsSelected: 'mi',
-      runningPace: 0,
+      runningPace: 420,
       runningTime: 0,
       distance: 26.219,
-      displayTable: false,
     }
   }
 
@@ -44,29 +43,23 @@ class App extends Component {
   }
 
   handleRunningPaceChange = (time) => {
-    this.setState({runningPace: time});
+    let runningTime = Calculator.getRunningTime(this.state.distance, time);
+
+    this.setState({runningTime: runningTime,
+                   runningPace: time
+                  });
   }
 
   handleRunningTimeChange = (time) => {
-    this.setState({runningTime: time});
-  }
+    let runningPace = Calculator.getRunningPace(this.state.distance, time);
 
-  handleCalculateClick = () => {
-    const {distance, timeFormatProvided, runningPace, runningTime} = this.state;
-    
-    if (timeFormatProvided === 'runningPace') {
-      let time = Calculator.getRunningTime(distance, runningPace);
-      this.setState({runningTime: time});
-    } else {
-      let time = Calculator.getRunningPace(distance, runningTime);
-      this.setState({runningPace: time});
-    }
-
-    this.setState({displayTable: true})
+    this.setState({runningPace: runningPace,
+                   runningTime: time
+                  });
   }
 
   render() {
-    const {timeFormatProvided, measureUnitsSelected, displayTable, runningPace} = this.state;
+    const {timeFormatProvided, measureUnitsSelected} = this.state;
     console.log(this.state)
 
     return (
@@ -80,11 +73,9 @@ class App extends Component {
             <TimeFormat timeFormatProvided={timeFormatProvided} onTimeFormatChange={this.handleTimeFormatChange}/>
             {timeFormatProvided === 'runningPace' ? <RunningPace onRunningPaceChange={this.handleRunningPaceChange}/> : <RunningTime onRunningTimeChange={this.handleRunningTimeChange}/>}
             <MeasureUnits measureUnitsSelected={measureUnitsSelected} onMeasureUnitsChange={this.handleMeasureUnitsChange}/>
-
-            <button type="button" id="calculate-button" onClick={this.handleCalculateClick}>Calculate</button>
           </form>
 
-          {(displayTable && runningPace >= 60)  && (<Table data={this.state}/>)}
+          <Table data={this.state}/>
         </main>
       </div>
     );
