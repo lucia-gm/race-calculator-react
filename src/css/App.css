@@ -32,9 +32,17 @@ fieldset {
   justify-content: space-between;
 }
 
-#calculate-button {
-  cursor: pointer;
+/* Form Styles */
+.form-timeFormat, 
+.form-measureUnits {
+  padding: 1.5rem 0 0;
 }
+
+.form-distance,
+.form-time {
+  padding-top: 0;
+}
+
 
 /* Table styles */
 table {

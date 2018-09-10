@@ -1,8 +1,8 @@
 import React from 'react';
 
 const Distance = (props) => (
-  <fieldset>
-    <legend>Distance</legend>
+  <fieldset className="form-distance">
+    <legend>Select a distance:</legend>
     <select onChange={props.onDistanceChange}>
       <option race="Marathon" id="marathon" value="26.219">Marathon</option>
       <option id="half-marathon" value="13.1094">Half-Marathon</option>

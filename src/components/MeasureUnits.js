@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MeasureUnits = (props) => (
-  <fieldset>
+  <fieldset className="form-measureUnits">
     <div>
       <label>
         <input type="radio" value="mi" checked={props.measureUnitsSelected === 'mi'} onChange={props.onMeasureUnitsChange}/>

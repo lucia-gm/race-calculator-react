@@ -57,7 +57,7 @@ class RunningTime extends Component {
 
   render() {
     return (
-      <fieldset>
+      <fieldset className="form-time">
         <select className="hour" onChange={this.handleTimeChange}>
           {this.createHourOptions()}
         </select>
