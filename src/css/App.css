@@ -22,13 +22,14 @@ fieldset {
 
 /* App styles */
 .App {
-  padding: 3rem 10rem;
+  padding: 3rem 0 3rem 10rem ;
   color: #432966;
 }
 
 .App-body {
-  max-width: 96rem;
+  max-width: 115rem;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
@@ -60,7 +61,7 @@ table {
 }
 
 .highlighted-row :first-child,
-.highlighted-row :nth-child(3) {
+.highlighted-row :nth-child(4) {
   font-weight: 800;
 }
 

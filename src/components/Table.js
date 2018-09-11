@@ -5,16 +5,20 @@ class Table extends Component {
   createRows = (lastRow, unit, pace) => {
     let tableBody = [],
         paceTime = pace,
-        pace5Slower = pace - 5,
-        pace5Faster = pace + 5;
+        paceSlowest = pace - 60,
+        paceSlower = pace - 30,
+        paceFaster = pace + 30,
+        paceFastest = pace + 60;
     
     for (let i = 1; i <= lastRow; i++) {
       let rowInfo = (unit === 'mi') ? this.getMiValues(i) : this.getKmValues(i); 
       tableBody.push(<tr key={i} className={(typeof(rowInfo.name)=== 'string') ? 'highlighted-row' : ''}>
                       <td>{rowInfo.name}</td>
-                      <td>{Calculator.secondsToHms(rowInfo.value * pace5Slower)}</td>
+                      <td>{Calculator.secondsToHms(rowInfo.value * paceSlowest)}</td>
+                      <td>{Calculator.secondsToHms(rowInfo.value * paceSlower)}</td>
                       <td className='highlighted-col'>{Calculator.secondsToHms(rowInfo.value * paceTime)}</td>
-                      <td>{Calculator.secondsToHms(rowInfo.value * pace5Faster)}</td>
+                      <td>{Calculator.secondsToHms(rowInfo.value * paceFaster)}</td>
+                      <td>{Calculator.secondsToHms(rowInfo.value * paceFastest)}</td>
                      </tr>);
     }
 
@@ -137,8 +141,10 @@ class Table extends Component {
     let unit = data.measureUnitsSelected,
         distance = data.distance,
         pace = data.runningPace,
-        paceSlower = pace - 5,
-        paceFaster = pace + 5;
+        paceSlowest = pace - 60,
+        paceSlower = pace - 30,
+        paceFaster = pace + 30,
+        paceFastest = pace + 60;
     
     const raceList = [
       {km: {value: 5, row: 5}, mi: {value: 3.1069, row: 4}},
@@ -155,9 +161,11 @@ class Table extends Component {
         <thead>
           <tr className="table-heading">
             <th>Distance ({unit})</th>
+            <th>{Calculator.secondsToHms(paceSlowest)}/{unit}</th>
             <th>{Calculator.secondsToHms(paceSlower)}/{unit}</th>
             <th>{Calculator.secondsToHms(pace)}/{unit}</th>
             <th>{Calculator.secondsToHms(paceFaster)}/{unit}</th>
+            <th>{Calculator.secondsToHms(paceFastest)}/{unit}</th>
           </tr>
         </thead>
 
