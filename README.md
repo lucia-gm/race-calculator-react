@@ -5,7 +5,7 @@ A single page application to calculate the running pace or the final time of a r
 [View online demo](http://luciagm.net/race-calculator-react/)
 
 
-## Porject Overview
+## Project Overview
 Tha Race Calculator has been built from scracth using [React](https://github.com/facebook/create-react-app).
 
 The user can select a distance and then choose between providing the running pace or the running time and between miles/min or kilometers/min:

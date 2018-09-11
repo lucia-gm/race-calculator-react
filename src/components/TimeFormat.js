@@ -11,7 +11,7 @@ const TimeFormat = (props) => (
     <div>
       <label>
         <input type="radio" value="runningTime" checked={props.timeFormatProvided === 'runningTime'} onChange={props.onTimeFormatChange}/>
-        I want to finish the race in less than...
+        I want to finish the race in...
       </label>
     </div>
   </fieldset>
