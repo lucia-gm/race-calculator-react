@@ -22,12 +22,12 @@ fieldset {
 
 /* App styles */
 .App {
-  padding: 3rem 0 3rem 10rem ;
+  padding: 3rem 10rem 3rem 10rem;
   color: #432966;
 }
 
 .App-body {
-  max-width: 115rem;
+  max-width: 120rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -75,4 +75,44 @@ td {
 
 th, td {
   padding: 0.2rem 1.7rem;
+}
+
+
+/* Media Queries */
+@media screen and (max-width: 1200px) {
+  .App {
+    padding: 2rem 5rem 3rem 5rem;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  html {
+    font-size: 54.6875%;
+  }
+}
+
+@media screen and (max-width: 930px) {
+  .App {
+    padding: 1rem 2.5rem 2rem 2.5rem;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .App-body {
+    display: inherit;
+  }
+
+  .form-measureUnits {
+    margin-bottom: 6rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  th, td {
+    padding: 0.2rem 1rem;
+  }
+
+  .App {
+    padding: 1rem 1rem 2rem 1rem;
+  }
 }
