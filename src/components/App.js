@@ -22,8 +22,14 @@ class App extends Component {
   }
 
   handleDistanceChange = (event) => {
+    const {timeFormatProvided, measureUnitsSelected} = this.state;
     let distanceInMiles = event.target.value,
-        distance = Calculator.getDistance(this.state.measureUnitsSelected, distanceInMiles);
+        distance = Calculator.getDistance(measureUnitsSelected, distanceInMiles);
+    
+    if(timeFormatProvided === 'runningTime') {
+      this.updateRunningPace(distance);
+    }
+
     this.setState({distanceSelected: distanceInMiles,
                    distance: distance
                   });
@@ -34,8 +40,14 @@ class App extends Component {
   }
 
   handleMeasureUnitsChange = (event) => {
+    const {timeFormatProvided, distanceSelected} = this.state;
+
     let measureUnits = event.target.value,
-        distance = Calculator.getDistance(measureUnits, this.state.distanceSelected);
+        distance = Calculator.getDistance(measureUnits, distanceSelected);
+
+    if(timeFormatProvided === 'runningTime') {
+      this.updateRunningPace(distance);
+    }
 
     this.setState({measureUnitsSelected: measureUnits,  
                    distance: distance
@@ -58,8 +70,13 @@ class App extends Component {
                   });
   }
 
+  updateRunningPace = (distance) => {
+    let runningPace = Calculator.getRunningPace(distance, this.state.runningTime);
+    this.setState({runningPace: runningPace});
+    } 
+
   render() {
-    const {timeFormatProvided, measureUnitsSelected} = this.state;
+    const {timeFormatProvided, measureUnitsSelected, runningPace} = this.state;
     console.log(this.state)
 
     return (
@@ -71,7 +88,7 @@ class App extends Component {
           <form>
             <Distance onDistanceChange={this.handleDistanceChange}/>
             <TimeFormat timeFormatProvided={timeFormatProvided} onTimeFormatChange={this.handleTimeFormatChange}/>
-            {timeFormatProvided === 'runningPace' ? <RunningPace onRunningPaceChange={this.handleRunningPaceChange}/> : <RunningTime onRunningTimeChange={this.handleRunningTimeChange}/>}
+            {timeFormatProvided === 'runningPace' ? <RunningPace onRunningPaceChange={this.handleRunningPaceChange} runningPace={runningPace}/> : <RunningTime onRunningTimeChange={this.handleRunningTimeChange}/>}
             <MeasureUnits measureUnitsSelected={measureUnitsSelected} onMeasureUnitsChange={this.handleMeasureUnitsChange}/>
           </form>
 

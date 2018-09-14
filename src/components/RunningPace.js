@@ -43,9 +43,10 @@ class RunningPace extends Component {
   }
 
   render() {
+    let defaultMin = (this.props.runningPace !== 420) ? 0 : this.state.min;
     return (
       <fieldset className="form-time">
-        <select className="min" onChange={this.handleTimeChange} defaultValue={this.state.min}>
+        <select className="min" onChange={this.handleTimeChange} defaultValue={defaultMin}>
           {this.createMinOptions()}
         </select>
 
