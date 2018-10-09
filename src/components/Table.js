@@ -134,8 +134,6 @@ class Table extends Component {
     }
   }
 
-
-
   render() {
     const {data} = this.props;
     let unit = data.measureUnitsSelected,
